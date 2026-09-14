@@ -61,10 +61,13 @@ class AuthController extends Controller
     {
         $validated = $request->validate(['phone' => 'required|string']);
 
-        $customer = Customer::firstOrCreate(
-            ['phone' => $validated['phone']],
-            ['name' => 'Customer']
-        );
+        $customer = Customer::where('phone', $validated['phone'])->first();
+
+        if (! $customer) {
+            return response()->json([
+                'message' => 'No account found for this phone number. Please register first.',
+            ], 404);
+        }
 
         $otp = (string) random_int(100000, 999999);
 
