@@ -22,6 +22,7 @@ class StationController extends Controller
             'status' => 'in:active,inactive,maintenance',
             'tank_capacity_liters' => 'nullable|numeric|min:0',
             'current_level_liters' => 'nullable|numeric|min:0',
+            'low_stock_threshold' => 'nullable|numeric|min:0',
         ]);
 
         $station = Station::create($validated);
@@ -42,6 +43,7 @@ class StationController extends Controller
             'status' => 'in:active,inactive,maintenance',
             'tank_capacity_liters' => 'nullable|numeric|min:0',
             'current_level_liters' => 'nullable|numeric|min:0',
+            'low_stock_threshold' => 'nullable|numeric|min:0',
         ]);
 
         $station->update($validated);
