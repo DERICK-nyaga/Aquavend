@@ -15,6 +15,7 @@ class Customer extends Authenticatable
         'name', 
         'phone', 
         'email', 
+        'fcm_token',
         'address', 
         'wallet_balance', 
         'credit_limit', 
@@ -22,7 +23,8 @@ class Customer extends Authenticatable
         'password', 
         'otp_code', 
         'otp_expires_at', 
-        'phone_verified_at'
+        'phone_verified_at',
+        'last_loyalty_discount_at',
     ];
 
     protected $hidden = [
@@ -42,6 +44,7 @@ class Customer extends Authenticatable
             'credit_balance' => 'float',
             'otp_expires_at' => 'datetime',
             'phone_verified_at' => 'datetime',
+            'last_loyalty_discount_at' => 'datetime',
         ];
     }
 
