@@ -22,4 +22,9 @@ class Expense extends Model
     {
         return $this->belongsTo(User::class, 'recorded_by');
     }
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }
