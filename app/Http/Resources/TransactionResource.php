@@ -17,7 +17,14 @@ class TransactionResource extends JsonResource
             'payment_method' => $this->payment_method,
             'status' => $this->status,
             'items' => TransactionItemResource::collection($this->whenLoaded('items')),
+            'delivery_latitude' => $this->delivery_latitude,
+            'delivery_longitude' => $this->delivery_longitude,
+            'delivery_address_note' => $this->delivery_address_note,
+            'delivery_maps_url' => $this->googleMapsUrl(),
             'created_at' => $this->created_at,
+            'gross_amount' => $this->gross_amount,
+            'discount_amount' => $this->discount_amount,
+            'total_amount' => $this->total_amount,
         ];
     }
 }
