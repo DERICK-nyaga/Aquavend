@@ -43,6 +43,27 @@ class ExpenseWebController extends Controller
         return redirect('/expenses')->with('success', 'Expense recorded.');
     }
 
+    public function edit(Expense $expense)
+    {
+        $stations = Station::all();
+        return view('expenses.edit', compact('expense', 'stations'));
+    }
+
+    public function update(Request $request, Expense $expense)
+    {
+        $validated = $request->validate([
+            'station_id' => 'nullable|exists:stations,id',
+            'category' => ['required', Rule::in(Expense::CATEGORIES)],
+            'description' => 'nullable|string|max:255',
+            'amount' => 'required|numeric|min:0',
+            'expense_date' => 'required|date',
+        ]);
+
+        $expense->update($validated);
+
+        return redirect('/expenses')->with('success', 'Expense updated.');
+    }
+
     public function destroy(Expense $expense)
     {
         $expense->delete();
